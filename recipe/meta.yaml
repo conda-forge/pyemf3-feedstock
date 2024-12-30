@@ -10,18 +10,21 @@ source:
   sha256: 59dde1609ac1bb586c6fccaf47183ba8cb46d9d7570d51f1cba19aada82a0cf4
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv
   
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python {{ python_min }}
+    - setuptools
   run:
-    - python >=3.6
+    - python >={{ python_min }}
    
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - pyemf3
   
